@@ -62,7 +62,7 @@ class MythrilAnalyzer:
             if cmd_args.custom_modules_directory
             else ""
         )
-        self.source_path = getattr(cmd_args, "solidity_files", ["Unknown"])[0]
+        self.cmd_args = cmd_args
         args.pruning_factor = cmd_args.pruning_factor
         args.solver_timeout = cmd_args.solver_timeout
         args.parallel_solving = cmd_args.parallel_solving
@@ -81,6 +81,25 @@ class MythrilAnalyzer:
                 args.pruning_factor = 1
             else:
                 args.pruning_factor = 0
+
+    def _get_input_name(self) -> str:
+        """返回本次分析的输入名称（源码文件 / 字节码文件 / 地址等）"""
+        if getattr(self.cmd_args, "solidity_files", None):
+            # solc 源文件列表
+            return self.cmd_args.solidity_files[0]
+
+        if getattr(self.cmd_args, "codefile", None):
+            # -f 指定的字节码文件
+            return self.cmd_args.codefile.name
+
+        if getattr(self.cmd_args, "code", None):
+            # -c 直接给出的 hex 字符串
+            return "<bytecode-from-cli>"
+
+        if getattr(self.cmd_args, "address", None):
+            return f"<onchain:{self.cmd_args.address}>"
+
+        return "<unknown>"
 
     def dump_statespace(self, contract: EVMContract = None) -> str:
         """
@@ -178,7 +197,7 @@ class MythrilAnalyzer:
 
                 # 构建结构化数据
                 contract_data = {
-                    "source_path": self.source_path,
+                    "source_path": self._get_input_name(),
                     "contract_name": contract.name,
                     "contract_code": contract.code,
                     "nodes": list(rendered_nodes) if rendered_nodes else [],
@@ -190,8 +209,8 @@ class MythrilAnalyzer:
                 # 保存到source_path同目录同名的文件中
                 import os
 
-                output_dir = os.path.dirname(self.source_path)
-                source_file_name = os.path.basename(self.source_path).split(".")[0]
+                output_dir = os.path.dirname(self._get_input_name())
+                source_file_name = os.path.basename(self._get_input_name())
                 output_file = os.path.join(
                     output_dir, f"{source_file_name}_{contract.name}.json"
                 )
