@@ -62,6 +62,7 @@ class MythrilAnalyzer:
             if cmd_args.custom_modules_directory
             else ""
         )
+        self.source_path = getattr(cmd_args, "solidity_files", ["Unknown"])[0]
         args.pruning_factor = cmd_args.pruning_factor
         args.solver_timeout = cmd_args.solver_timeout
         args.parallel_solving = cmd_args.parallel_solving
@@ -161,12 +162,42 @@ class MythrilAnalyzer:
                     create_timeout=self.create_timeout,
                     transaction_count=transaction_count,
                     modules=modules,
-                    compulsory_statespace=False,
+                    compulsory_statespace=True,
                     disable_dependency_pruning=self.disable_dependency_pruning,
                     custom_modules_directory=self.custom_modules_directory,
                 )
                 issues = fire_lasers(sym, modules)
                 execution_info = sym.execution_info
+                from mythril.analysis.normalize_node_and_edge import (
+                    extract_rendered_nodes_and_edges,
+                )
+
+                import json
+
+                rendered_nodes, rendered_edges = extract_rendered_nodes_and_edges(sym)
+
+                # 构建结构化数据
+                contract_data = {
+                    "source_path": self.source_path,
+                    "contract_name": contract.name,
+                    "contract_code": contract.code,
+                    "nodes": list(rendered_nodes) if rendered_nodes else [],
+                    "edges": [[edge[0], edge[1]] for edge in set(rendered_edges)],
+                }
+
+                # 输出JSON
+                # print(json.dumps(contract_data, indent=2, ensure_ascii=False))
+                # 保存到source_path同目录同名的文件中
+                import os
+
+                output_dir = os.path.dirname(self.source_path)
+                source_file_name = os.path.basename(self.source_path).split(".")[0]
+                output_file = os.path.join(
+                    output_dir, f"{source_file_name}_{contract.name}.json"
+                )
+                os.makedirs(output_dir, exist_ok=True)
+                with open(output_file, "w", encoding="utf-8") as f:
+                    json.dump(contract_data, f, indent=2, ensure_ascii=False)
             except DetectorNotFoundError as e:
                 # Bubble up
                 raise e
