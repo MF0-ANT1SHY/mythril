@@ -1,0 +1,154 @@
+[
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.7.1,v4.7.2___v4.7.1.hex",
+    "seconds": 3.782,
+    "returncode": 0,
+    "stdout_bytes": 47,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.7.1,v4.7.2___v4.7.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.7.1,v4.7.2_v4.7.1.hex",
+    "seconds": 4.538,
+    "returncode": 1,
+    "stdout_bytes": 3552,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.7.1,v4.7.2_v4.7.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.7.0,v4.7.1__v4.7.0.hex",
+    "seconds": 4.843,
+    "returncode": 1,
+    "stdout_bytes": 3550,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.7.0,v4.7.1__v4.7.0.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.4.0,v4.4.1_v4.4.0.hex",
+    "seconds": 14.815,
+    "returncode": 1,
+    "stdout_bytes": 4273,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.4.0,v4.4.1_v4.4.0.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.3.1,v4.3.2_v4.3.1.hex",
+    "seconds": 25.853,
+    "returncode": 1,
+    "stdout_bytes": 12387,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.3.1,v4.3.2_v4.3.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.7.2,v4.7.3_v4.7.2.hex",
+    "seconds": 47.438,
+    "returncode": 1,
+    "stdout_bytes": 4069,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.7.2,v4.7.3_v4.7.2.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.9.2,v4.9.3_v4.9.2.hex",
+    "seconds": 51.014,
+    "returncode": 1,
+    "stdout_bytes": 4697,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.9.2,v4.9.3_v4.9.2.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.9.5,v4.9.6_v4.9.5.hex",
+    "seconds": 75.998,
+    "returncode": 1,
+    "stdout_bytes": 4179,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.9.5,v4.9.6_v4.9.5.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.7.0,v4.7.1_v4.7.0.hex",
+    "seconds": 261.893,
+    "returncode": 0,
+    "stdout_bytes": 47,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.7.0,v4.7.1_v4.7.0.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.8.1,v4.8.2_v4.8.1.hex",
+    "seconds": 3712.249,
+    "returncode": 1,
+    "stdout_bytes": 288779,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.8.1,v4.8.2_v4.8.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.8.2,v4.8.3__v4.8.2.hex",
+    "seconds": 3949.19,
+    "returncode": 1,
+    "stdout_bytes": 18061,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.8.2,v4.8.3__v4.8.2.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.3.2,v4.3.3_v4.3.2.hex",
+    "seconds": 5811.733,
+    "returncode": 1,
+    "stdout_bytes": 22743,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.3.2,v4.3.3_v4.3.2.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.9.1,v4.9.2_v4.9.1.hex",
+    "seconds": 6397.523,
+    "returncode": 1,
+    "stdout_bytes": 5871,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.9.1,v4.9.2_v4.9.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.3.0,v4.3.1_v4.3.0.hex",
+    "seconds": 7217.669,
+    "returncode": 0,
+    "stdout_bytes": 47,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.3.0,v4.3.1_v4.3.0.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.9.0,v4.9.1_v4.9.0.hex",
+    "seconds": 18136.0,
+    "returncode": 1,
+    "stdout_bytes": 683892,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.9.0,v4.9.1_v4.9.0.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.8.2,v4.8.3_v4.8.2.hex",
+    "seconds": 18806.093,
+    "returncode": 1,
+    "stdout_bytes": 796229,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.8.2,v4.8.3_v4.8.2.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.7.1,v4.7.2__v4.7.1.hex",
+    "seconds": 24499.522,
+    "returncode": 1,
+    "stdout_bytes": 602947,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.7.1,v4.7.2__v4.7.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.4.1,v4.4.2_v4.4.1.hex",
+    "seconds": 38914.079,
+    "returncode": 1,
+    "stdout_bytes": 232932,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.4.1,v4.4.2_v4.4.1.json"
+  },
+  {
+    "file": "/data1/sureyang/repo/Mapper/.tmp/benchmark/flatten/v4.9.4,v4.9.5_v4.9.4.hex",
+    "seconds": 72178.847,
+    "returncode": 1,
+    "stdout_bytes": 65880,
+    "stderr_bytes": 0,
+    "output_path": "/data1/sureyang/repo/mythril/outputs/v4.9.4,v4.9.5_v4.9.4.json"
+  }
+]
