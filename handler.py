@@ -65,6 +65,8 @@ def run_myth(hex_path: Path, output_dir: Path) -> Dict:
     cmd = [
         "myth",
         "a",
+        "-m",
+        "AccidentallyKillable",
         "-o",
         "json",
         "--bin-runtime",
