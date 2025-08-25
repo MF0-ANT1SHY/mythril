@@ -21,7 +21,10 @@ import signal
 import subprocess
 import sys
 import time
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import (
+    ProcessPoolExecutor,
+    as_completed,
+)
 from pathlib import Path
 from typing import Dict, List
 
@@ -74,29 +77,35 @@ def run_myth(hex_path: Path, output_dir: Path) -> Dict:
         str(hex_path),
     ]
 
-    proc = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True,
-    )
+    log_file = Path(f"{hex_path}.log")
+    out_file = output_dir / f"{hex_path.stem}.json"
+    
+    with open(log_file, 'w', encoding='utf-8') as log_f:
+        proc = subprocess.run(
+            cmd,
+            stdout=subprocess.PIPE,  # 捕获stdout用于保存JSON
+            stderr=log_f,           # stderr直接写入日志文件
+            text=True,
+        )
 
     elapsed = time.perf_counter() - start
 
-    # 若 myth 成功输出 json，则保存到单独文件
-    out_file = output_dir / f"{hex_path.stem}.json"
+    # 保存JSON输出
     try:
         out_file.write_text(proc.stdout, encoding="utf-8")
     except Exception as e:
-        # 写文件失败时保留错误信息
-        proc.stderr += f"\n\n[handler.py] 保存输出失败: {e}"
+        # 追加写文件失败信息到日志
+        with open(log_file, 'a', encoding='utf-8') as log_f:
+            log_f.write(f"\n\n[handler.py] 保存输出失败: {e}")
 
     return {
         "file": str(hex_path),
         "seconds": round(elapsed, 3),
         "returncode": proc.returncode,
         "stdout_bytes": len(proc.stdout.encode("utf-8")),
-        "stderr_bytes": len(proc.stderr.encode("utf-8")),
+        "stderr_bytes": log_file.stat().st_size if log_file.exists() else 0,
         "output_path": str(out_file),
+        "log_path": str(log_file),
     }
 
 

@@ -6,17 +6,44 @@ from abc import ABCMeta
 from collections import defaultdict
 from copy import copy
 from datetime import datetime, timedelta
-from typing import Callable, DefaultDict, Dict, List, Optional, Tuple
+from typing import (
+    Callable,
+    DefaultDict,
+    Dict,
+    List,
+    Optional,
+    Tuple,
+)
 
-from mythril.analysis.potential_issues import check_potential_issues
-from mythril.laser.ethereum.cfg import Edge, JumpType, Node, NodeFlags
-from mythril.laser.ethereum.evm_exceptions import StackUnderflowException, VmException
-from mythril.laser.ethereum.instruction_data import get_required_stack_elements
+from mythril.analysis.potential_issues import (
+    check_potential_issues,
+)
+from mythril.laser.ethereum.cfg import (
+    Edge,
+    JumpType,
+    Node,
+    NodeFlags,
+)
+from mythril.laser.ethereum.evm_exceptions import (
+    StackUnderflowException,
+    VmException,
+)
+from mythril.laser.ethereum.instruction_data import (
+    get_required_stack_elements,
+)
 from mythril.laser.ethereum.instructions import Instruction
-from mythril.laser.ethereum.state.global_state import GlobalState
-from mythril.laser.ethereum.state.world_state import WorldState
-from mythril.laser.ethereum.strategy.basic import DepthFirstSearchStrategy
-from mythril.laser.ethereum.strategy.constraint_strategy import DelayConstraintStrategy
+from mythril.laser.ethereum.state.global_state import (
+    GlobalState,
+)
+from mythril.laser.ethereum.state.world_state import (
+    WorldState,
+)
+from mythril.laser.ethereum.strategy.basic import (
+    DepthFirstSearchStrategy,
+)
+from mythril.laser.ethereum.strategy.constraint_strategy import (
+    DelayConstraintStrategy,
+)
 from mythril.laser.ethereum.time_handler import time_handler
 from mythril.laser.ethereum.transaction import (
     ContractCreationTransaction,
@@ -26,7 +53,10 @@ from mythril.laser.ethereum.transaction import (
     execute_message_call,
 )
 from mythril.laser.execution_info import ExecutionInfo
-from mythril.laser.plugin.signals import PluginSkipState, PluginSkipWorldState
+from mythril.laser.plugin.signals import (
+    PluginSkipState,
+    PluginSkipWorldState,
+)
 from mythril.laser.smt import And, simplify, symbol_factory
 from mythril.support.opcodes import OPCODES
 from mythril.support.support_args import args
@@ -582,6 +612,32 @@ class LaserEVM:
         :param opcode:
         :param new_states:
         """
+        if opcode == "JUMP" or opcode == "JUMPI":
+            import logging
+            import sys
+            from datetime import datetime
+            level = logging.INFO
+
+            logger = logging.getLogger(__name__)
+            logger.setLevel(level)
+
+            logger.propagate = False
+
+            # Create handler
+            handler = logging.StreamHandler(sys.stderr)
+            handler.setLevel(level)
+
+            formatter = logging.Formatter(
+                fmt='%(asctime)s\t%(levelname)s\t%(name)s\t%(module)s\t%(funcName)s\t%(lineno)d\t%(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
+
+            # Add formatter to handler
+            handler.setFormatter(formatter)
+
+            # Add handler to logger
+            logger.addHandler(handler)
+            logger.info(f"new edge count")
         if opcode == "JUMP":
             assert len(new_states) <= 1
             for state in new_states:
@@ -598,6 +654,7 @@ class LaserEVM:
 
         for state in new_states:
             state.node.states.append(state)
+
 
     def _new_node_state(
         self, state: GlobalState, edge_type=JumpType.UNCONDITIONAL, condition=None
