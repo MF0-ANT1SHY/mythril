@@ -10,6 +10,7 @@ Welcome to Mythril's documentation!
    tutorial
    security-analysis
    analysis-modules
+   architecture-analysis
    mythril
 
 
